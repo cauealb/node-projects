@@ -91,3 +91,29 @@ export async function putCliente(dto, idCliente) {
         })
     }
 }
+
+export async function deleteCliente(req, res) {
+    try
+    {
+        const { idCliente } = req.body;
+
+        const resposta = await ClienteService.deleteCliente(idCliente);
+        if(resposta === null) {
+            res.statsCode(400).json({
+                message: "Ocorreu um erro ao tentar alterar esse cliente."
+            })
+            return;
+        }
+
+        res.statsCode(200).json({
+            message: resposta
+        })
+    }
+    catch(ex) 
+    {
+        res.statusCode(500).json({
+            message: "Erro ao alterar cliente.",
+            details: ex
+        })
+    }
+}
