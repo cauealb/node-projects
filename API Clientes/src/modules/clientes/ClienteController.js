@@ -45,10 +45,10 @@ export async function getClientesPeloID(idCliente) {
     }
 }
 
-export async function putCliente(dto) {
+export async function postCliente(dto) {
     try
     {
-        const resposta = await ClienteService.putCliente(dto);
+        const resposta = await ClienteService.postCliente(dto);
         if(resposta == null) {
             res.statusCode(400).json({
                 message: "Ocorreu algum erro ao tentar criar um cliente."
@@ -56,13 +56,37 @@ export async function putCliente(dto) {
             return;
         }
         res.statusCode(201).json({
-            message: "Cliente cadastrado com sucesso!"
+            message: resposta
         })
     }
     catch (ex) 
     {
         res.statusCode(500).json({
             message: "Erro ao criar cliente.",
+            details: ex
+        })
+    }
+}
+
+export async function putCliente(dto, idCliente) {
+    try
+    {
+        const resposta = await ClienteService.putCliente(dto, idCliente);
+        if(resposta === null) {
+            res.statusCode(400).json({
+                message: "Ocorreu algum erro ao tentar alterar esse cliente."
+            });
+            return;
+        }
+
+        res.statsCode(200).json({
+            message: resposta
+        })
+    }
+    catch(ex) 
+    {
+        res.statusCode(500).json({
+            message: "Erro ao alterar cliente.",
             details: ex
         })
     }
