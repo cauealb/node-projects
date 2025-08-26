@@ -1,11 +1,11 @@
-
+import * as ClienteService from './ClienteService.js'
 
 
 
 export async function getClientes(req, res) {
     try
     {
-
+        const clientes = await ClienteService.getClientes()
 
     }
     catch(ex) {
