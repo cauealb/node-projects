@@ -51,7 +51,7 @@ export async function postCliente(req, res) {
       });
       return;
     }
-    
+
     res.statusCode(201).json({
       message: resposta,
     });
