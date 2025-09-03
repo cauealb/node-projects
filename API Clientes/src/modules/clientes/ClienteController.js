@@ -1,6 +1,9 @@
+import express from 'express';
 import * as ClienteService from "./ClienteService.js";
 
-export async function getClientes(req, res) {
+const router = express.Router();
+
+router.get('', async (req, res) => {
   try {
     const clientes = await ClienteService.getClientes();
     if (clientes == null) {
@@ -17,9 +20,9 @@ export async function getClientes(req, res) {
       details: ex,
     });
   }
-}
+})
 
-export async function getClientesPeloID(req, res) {
+router.get('/pelo-id', async (req, res) => {
   try {
     const { idCliente } = req.body;
 
@@ -38,7 +41,7 @@ export async function getClientesPeloID(req, res) {
       details: ex,
     });
   }
-}
+})
 
 export async function postCliente(req, res) {
   try {

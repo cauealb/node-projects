@@ -1,8 +1,9 @@
+import * as _clienteRepository from './ClienteRepository'
 
 export async function getClientes() {
     try
     {
-        return
+        return _clienteRepository.listarClientes();
     }
     catch (ex) 
     {
@@ -15,7 +16,14 @@ export async function getClientesPeloID(idCliente) {
 }
 
 export async function postCliente(dto) {
-    return
+    try
+    {
+        return _clienteRepository.criarCliente(dto);
+    }
+    catch (ex) 
+    {
+        return ex
+    }
 }
 
 export async function putCliente(dto, idCliente) {
