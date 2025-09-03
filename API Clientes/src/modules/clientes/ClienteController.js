@@ -43,7 +43,7 @@ router.get('/pelo-id', async (req, res) => {
   }
 })
 
-export async function postCliente(req, res) {
+router.post('/', async (req, res) => {
   try {
     const { dto } = req.body;
 
@@ -64,9 +64,9 @@ export async function postCliente(req, res) {
       details: ex,
     });
   }
-}
+})
 
-export async function putCliente(req, res) {
+router.put('/', async (req, res) => {
   try {
     const { dto, idCliente } = req.body;
 
@@ -87,9 +87,9 @@ export async function putCliente(req, res) {
       details: ex,
     });
   }
-}
+})
 
-export async function deleteCliente(req, res) {
+router.delete('/', async (req, res) => {
   try {
     const { idCliente } = req.body;
 
@@ -110,4 +110,4 @@ export async function deleteCliente(req, res) {
       details: ex,
     });
   }
-}
+})
