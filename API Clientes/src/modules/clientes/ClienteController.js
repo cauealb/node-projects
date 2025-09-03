@@ -56,7 +56,7 @@ router.post('/criar', async (req, res) => {
     }
 
     res.status(201).json({
-      message: resposta,
+      message: "Cliente cadastrado com sucesso!",
     });
   } catch (ex) {
     res.status(500).json({
@@ -78,7 +78,7 @@ router.put('/alterar', async (req, res) => {
       return;
     }
 
-    res.statsCode(200).json({
+    res.status(200).json({
       message: resposta,
     });
   } catch (ex) {
