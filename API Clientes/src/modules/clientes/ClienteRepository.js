@@ -15,8 +15,9 @@ export async function listarClientes() {
 export async function criarCliente(dto) {
     try 
     {
+        console.log(dto)
         return await prisma.user.create({
-            data: {name: "Caue", email: "cauealvesb4@gmail.com", password: "123@123"}
+            data: {name: dto.name, email: dto.email, password: dto.password}
         });
     } catch (ex) 
     {

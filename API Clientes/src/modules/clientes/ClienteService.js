@@ -1,4 +1,4 @@
-import * as _clienteRepository from './ClienteRepository'
+import * as _clienteRepository from './ClienteRepository.js'
 
 export async function getClientes() {
     try

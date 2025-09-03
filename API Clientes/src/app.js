@@ -1,5 +1,5 @@
 import express from 'express';
-import * as Cliente from './modules/clientes/ClienteController'
+import Cliente from './modules/clientes/ClienteController.js'
 
 const app = express();
 app.use(express.json());

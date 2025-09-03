@@ -3,11 +3,12 @@ import * as ClienteService from "./ClienteService.js";
 
 const router = express.Router();
 
-router.get('', async (req, res) => {
+router.get('/todos', async (req, res) => {
   try {
+    console.log(req);
     const clientes = await ClienteService.getClientes();
     if (clientes == null) {
-      res.statusCode(200).json({
+      res.status(200).json({
         message: "Nenhum dado encontrado!",
       });
       return;
@@ -15,9 +16,9 @@ router.get('', async (req, res) => {
 
     res.json(clientes);
   } catch (ex) {
-    res.statusCode(500).json({
+    res.status(500).json({
       message: "Erro ao listar clientes.",
-      details: ex,
+      details: ex.message,
     });
   }
 })
@@ -28,7 +29,7 @@ router.get('/pelo-id', async (req, res) => {
 
     const cliente = await ClienteService.getClientesPeloID(idCliente);
     if (cliente == null) {
-      res.statusCode(200).json({
+      res.status(200).json({
         message: "Nenhum cliente encontrado com esse id.",
       });
       return;
@@ -36,43 +37,42 @@ router.get('/pelo-id', async (req, res) => {
 
     res.json(cliente);
   } catch (ex) {
-    res.statusCode(500).json({
+    res.status(500).json({
       message: "Erro ao listar cliente.",
-      details: ex,
+      details: ex.message,
     });
   }
 })
 
-router.post('/', async (req, res) => {
+router.post('/criar', async (req, res) => {
   try {
-    const { dto } = req.body;
-
+    const dto = req.body;
     const resposta = await ClienteService.postCliente(dto);
     if (resposta == null) {
-      res.statusCode(400).json({
+      res.status(400).json({
         message: "Ocorreu algum erro ao tentar criar um cliente.",
       });
       return;
     }
 
-    res.statusCode(201).json({
+    res.status(201).json({
       message: resposta,
     });
   } catch (ex) {
-    res.statusCode(500).json({
+    res.status(500).json({
       message: "Erro ao criar cliente.",
-      details: ex,
+      details: ex.message,
     });
   }
 })
 
-router.put('/', async (req, res) => {
+router.put('/alterar', async (req, res) => {
   try {
     const { dto, idCliente } = req.body;
 
     const resposta = await ClienteService.putCliente(dto, idCliente);
     if (resposta === null) {
-      res.statusCode(400).json({
+      res.status(400).json({
         message: "Ocorreu algum erro ao tentar alterar esse cliente.",
       });
       return;
@@ -82,14 +82,14 @@ router.put('/', async (req, res) => {
       message: resposta,
     });
   } catch (ex) {
-    res.statusCode(500).json({
+    res.status(500).json({
       message: "Erro ao alterar cliente.",
-      details: ex,
+      details: ex.message,
     });
   }
 })
 
-router.delete('/', async (req, res) => {
+router.delete('/deletar', async (req, res) => {
   try {
     const { idCliente } = req.body;
 
@@ -105,9 +105,11 @@ router.delete('/', async (req, res) => {
       message: resposta,
     });
   } catch (ex) {
-    res.statusCode(500).json({
+    res.status(500).json({
       message: "Erro ao alterar cliente.",
-      details: ex,
+      details: ex.message,
     });
   }
 })
+
+export default router;
