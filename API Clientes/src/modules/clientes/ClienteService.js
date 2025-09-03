@@ -1,6 +1,13 @@
 
 export async function getClientes() {
-    return
+    try
+    {
+        return
+    }
+    catch (ex) 
+    {
+        return ex
+    }
 }
 
 export async function getClientesPeloID(idCliente) {
