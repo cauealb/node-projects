@@ -31,5 +31,11 @@ export async function putCliente(dto, idCliente) {
 }
 
 export async function deleteCliente(idCliente) {
-    return
+    try 
+    {
+        return _clienteRepository.deletarCliente(idCliente)
+    } catch (ex) 
+    {
+        return ex
+    }
 }

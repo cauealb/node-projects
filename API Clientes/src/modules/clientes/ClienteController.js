@@ -91,18 +91,18 @@ router.put('/alterar', async (req, res) => {
 
 router.delete('/deletar', async (req, res) => {
   try {
-    const { idCliente } = req.body;
+    const idCliente = req.body;
 
     const resposta = await ClienteService.deleteCliente(idCliente);
     if (resposta === null) {
-      res.statsCode(400).json({
+      res.status(400).json({
         message: "Ocorreu um erro ao tentar alterar esse cliente.",
       });
       return;
     }
 
-    res.statsCode(200).json({
-      message: resposta,
+    res.status(200).json({
+      message: "Cliente deletado com sucesso",
     });
   } catch (ex) {
     res.status(500).json({

@@ -25,3 +25,17 @@ export async function criarCliente(dto) {
         throw ex;
     }
 }
+
+export async function deletarCliente(idCliente) {
+    try 
+    {
+        return await prisma.user.delete({
+            where: {id: idCliente.id}
+        })
+    } 
+    catch (error) 
+    {
+        console.log("Erro ao deletar cliente.");
+        throw ex;
+    }
+}
